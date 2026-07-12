@@ -34,6 +34,11 @@
 
   <div class="max-w-6xl mx-auto">
 
+    <!-- LOGO -->
+    <div class="mb-6">
+      <img src="logo.png" alt="Surfcenter" class="h-9 w-auto">
+    </div>
+
     <!-- HEADER -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
       <div>
@@ -51,14 +56,18 @@
 
     <!-- DROP ZONE -->
     <div id="dropzone" class="rounded-2xl p-12 text-center mb-6 bg-white" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-      <div class="text-4xl mb-3">üìÇ</div>
+      <svg class="mx-auto mb-3 text-gray-300" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 16v1a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1"/>
+        <path d="M7 9l5-5 5 5"/>
+        <path d="M12 4v12"/>
+      </svg>
       <p class="font-bold text-gray-700">Sleep je CSV hier naartoe</p>
       <p class="text-sm text-gray-400 mt-1">of gebruik de knop hierboven</p>
     </div>
 
     <!-- FILTERS -->
     <div id="filters" class="hidden bg-white rounded-2xl shadow-sm p-4 mb-4">
-      <input id="searchInput" type="text" placeholder="Zoek op naam, email of product‚Ä¶"
+      <input id="searchInput" type="text" placeholder="Zoek op naam, email of product&hellip;"
         class="w-full p-2.5 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-400 text-sm"
         oninput="renderLeads()" />
     </div>
@@ -68,7 +77,7 @@
 
   </div>
 
-  <!-- ‚ïê‚ïê‚ïê COMPOSE MODAL ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê -->
+  <!-- --- COMPOSE MODAL ------------------------------------------------------- -->
   <div id="composeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-backdrop p-4">
     <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-6 max-h-[92vh] overflow-y-auto">
       <div class="flex items-start justify-between gap-4 mb-5">
@@ -93,10 +102,10 @@
       <div class="mb-4">
         <label class="block text-xs font-bold text-gray-500 uppercase mb-2">
           Alternatieven
-          <span class="font-normal text-gray-400 normal-case ml-1">‚Üí {{Alternatieven}}</span>
+          <span class="font-normal text-gray-400 normal-case ml-1">&rarr; {{Alternatieven}}</span>
         </label>
         <textarea id="alternatieven" rows="3" oninput="updateComposePreview()"
-          placeholder="bijv.&#10;- Duotone Eagle 130 2025 ‚Üí surf-center.com/...&#10;- Starboard X-15 73 2026 ‚Üí surf-center.com/..."
+          placeholder="bijv.&#10;- Duotone Eagle 130 2025 &rarr; surf-center.com/...&#10;- Starboard X-15 73 2026 &rarr; surf-center.com/..."
           class="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-400 text-sm"></textarea>
       </div>
 
@@ -119,7 +128,7 @@
         </div>
       </div>
 
-      <!-- Action buttons ‚Äî 3 knoppen -->
+      <!-- Action buttons &mdash; 3 knoppen -->
       <div class="grid grid-cols-3 gap-3">
         <button onclick="doSend('apple')"
           class="flex flex-col items-center justify-center gap-1.5 py-3.5 bg-gray-900 hover:bg-gray-700 rounded-xl font-bold text-white text-sm transition">
@@ -140,7 +149,7 @@
     </div>
   </div>
 
-  <!-- ‚ïê‚ïê‚ïê TEMPLATE MANAGER ‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê -->
+  <!-- --- TEMPLATE MANAGER ----------------------------------------------------- -->
   <div id="templateModal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-backdrop p-4">
     <div class="w-full max-w-5xl bg-white rounded-2xl shadow-2xl p-6 max-h-[92vh] overflow-hidden flex flex-col">
       <div class="flex items-center justify-between mb-5">
@@ -167,10 +176,10 @@
               <label class="block text-xs font-bold text-gray-500 uppercase mb-1.5">Taal</label>
               <select id="tplLang" class="w-full p-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-400">
                 <option value="">Alle talen</option>
-                <option value="Dutch">üá≥üá± Nederlands</option>
-                <option value="English">üá¨üáß English</option>
-                <option value="German">üá©üá™ Deutsch</option>
-                <option value="French">üá´üá∑ Fran√ßais</option>
+                <option value="Dutch">NL Nederlands</option>
+                <option value="English">EN English</option>
+                <option value="German">DE Deutsch</option>
+                <option value="French">FR Fran&ccedil;ais</option>
               </select>
             </div>
           </div>
@@ -197,21 +206,21 @@
   </div>
 
   <script>
-    // ‚îÄ‚îÄ‚îÄ State ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+    // --- State ----------------------------------------------------------------
     let leads = [];
     let currentLead = null;
     let editingTplIndex = null;
 
     const PLACEHOLDERS = ['{{FirstName}}','{{Name}}','{{Email}}','{{Product}}','{{SKU}}','{{Store}}','{{DateSubscribed}}','{{Alternatieven}}'];
     const LANG_CODE  = { Dutch:'NL', English:'EN', German:'DE', French:'FR' };
-    const LANG_FLAGS = { Dutch:'üá≥üá±', English:'üá¨üáß', German:'üá©üá™', French:'üá´üá∑' };
+    const LANG_FLAGS = { Dutch:'NL', English:'EN', German:'DE', French:'FR' };
 
     const DEFAULT_TEMPLATES = [
-      // ‚îÄ‚îÄ NL ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+      // -- NL -----------------------------------------------------------------
       {
-        name: 'üá≥üá± Alternatieven',
+        name: 'NL Alternatieven',
         lang: 'Dutch',
-        subject: '{{Product}} ‚Äì alternatief aanbod',
+        subject: '{{Product}} \u2013 alternatief aanbod',
         body: `Hallo {{FirstName}},
 
 Je had je aangemeld voor een melding wanneer {{Product}} weer op voorraad is. Helaas is dit artikel nog steeds niet beschikbaar.
@@ -227,7 +236,7 @@ Het Surfcenter team
 surf-center.com`
       },
       {
-        name: 'üá≥üá± Weer op voorraad',
+        name: 'NL Weer op voorraad',
         lang: 'Dutch',
         subject: '{{Product}} is weer beschikbaar!',
         body: `Hallo {{FirstName}},
@@ -241,9 +250,9 @@ Het Surfcenter team
 surf-center.com`
       },
       {
-        name: 'üá≥üá± Besteloptie / pre-order',
+        name: 'NL Besteloptie / pre-order',
         lang: 'Dutch',
-        subject: '{{Product}} ‚Äì pre-order mogelijk',
+        subject: '{{Product}} \u2013 pre-order mogelijk',
         body: `Hallo {{FirstName}},
 
 {{Product}} is momenteel niet op voorraad, maar je kunt het artikel wel alvast reserveren via onze pre-order.
@@ -260,11 +269,11 @@ Met vriendelijke groet,
 Het Surfcenter team
 surf-center.com`
       },
-      // ‚îÄ‚îÄ EN ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+      // -- EN -----------------------------------------------------------------
       {
-        name: 'üá¨üáß Alternatives',
+        name: 'EN Alternatives',
         lang: 'English',
-        subject: '{{Product}} ‚Äì alternative offer',
+        subject: '{{Product}} \u2013 alternative offer',
         body: `Hi {{FirstName}},
 
 You signed up to be notified when {{Product}} comes back in stock. Unfortunately, this item is still unavailable.
@@ -273,14 +282,14 @@ We'd like to suggest the following alternatives:
 
 {{Alternatieven}}
 
-Feel free to reach out if you have any questions ‚Äî we're happy to help.
+Feel free to reach out if you have any questions \u2014 we're happy to help.
 
 Best regards,
 The Surfcenter team
 surf-center.com`
       },
       {
-        name: 'üá¨üáß Back in stock',
+        name: 'EN Back in stock',
         lang: 'English',
         subject: '{{Product}} is back in stock!',
         body: `Hi {{FirstName}},
@@ -294,9 +303,9 @@ The Surfcenter team
 surf-center.com`
       },
       {
-        name: 'üá¨üáß Pre-order option',
+        name: 'EN Pre-order option',
         lang: 'English',
-        subject: '{{Product}} ‚Äì pre-order available',
+        subject: '{{Product}} \u2013 pre-order available',
         body: `Hi {{FirstName}},
 
 {{Product}} is currently out of stock, but you can already reserve it via pre-order.
@@ -313,75 +322,75 @@ Best regards,
 The Surfcenter team
 surf-center.com`
       },
-      // ‚îÄ‚îÄ DE ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+      // -- DE -----------------------------------------------------------------
       {
-        name: 'üá©üá™ Alternativen',
+        name: 'DE Alternativen',
         lang: 'German',
-        subject: '{{Product}} ‚Äì Alternativangebot',
+        subject: '{{Product}} \u2013 Alternativangebot',
         body: `Hallo {{FirstName}},
 
-Sie haben sich f√ºr eine Benachrichtigung √ºber {{Product}} angemeldet. Leider ist dieser Artikel noch nicht wieder auf Lager.
+Sie haben sich f\u00FCr eine Benachrichtigung \u00FCber {{Product}} angemeldet. Leider ist dieser Artikel noch nicht wieder auf Lager.
 
-Wir m√∂chten Ihnen folgende Alternativen anbieten:
+Wir m\u00F6chten Ihnen folgende Alternativen anbieten:
 
 {{Alternatieven}}
 
-Bei Fragen stehen wir Ihnen gerne zur Verf√ºgung.
+Bei Fragen stehen wir Ihnen gerne zur Verf\u00FCgung.
 
-Mit freundlichen Gr√º√üen,
+Mit freundlichen Gr\u00FC\u00DFen,
 Das Surfcenter-Team
 surf-center.com`
       },
       {
-        name: 'üá©üá™ Wieder verf√ºgbar',
+        name: 'DE Wieder verf\u00FCgbar',
         lang: 'German',
-        subject: '{{Product}} ist wieder verf√ºgbar!',
+        subject: '{{Product}} ist wieder verf\u00FCgbar!',
         body: `Hallo {{FirstName}},
 
 Gute Neuigkeiten! {{Product}} ist wieder auf Lager.
 
 Bestellen Sie schnell auf surf-center.com, bevor der Artikel erneut ausverkauft ist.
 
-Mit freundlichen Gr√º√üen,
+Mit freundlichen Gr\u00FC\u00DFen,
 Das Surfcenter-Team
 surf-center.com`
       },
-      // ‚îÄ‚îÄ FR ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+      // -- FR -----------------------------------------------------------------
       {
-        name: 'üá´üá∑ Alternatives',
+        name: 'FR Alternatives',
         lang: 'French',
-        subject: '{{Product}} ‚Äì offre alternative',
+        subject: '{{Product}} \u2013 offre alternative',
         body: `Bonjour {{FirstName}},
 
-Vous vous √™tes inscrit(e) pour √™tre notifi√©(e) du retour en stock de {{Product}}. Malheureusement, cet article n'est toujours pas disponible.
+Vous vous \u00EAtes inscrit(e) pour \u00EAtre notifi\u00E9(e) du retour en stock de {{Product}}. Malheureusement, cet article n'est toujours pas disponible.
 
 Nous vous proposons les alternatives suivantes :
 
 {{Alternatieven}}
 
-N'h√©sitez pas √† nous contacter si vous avez des questions.
+N'h\u00E9sitez pas \u00E0 nous contacter si vous avez des questions.
 
 Cordialement,
-L'√©quipe Surfcenter
+L'\u00E9quipe Surfcenter
 surf-center.com`
       },
       {
-        name: 'üá´üá∑ De retour en stock',
+        name: 'FR De retour en stock',
         lang: 'French',
         subject: '{{Product}} est de nouveau disponible !',
         body: `Bonjour {{FirstName}},
 
-Bonne nouvelle ! {{Product}} est √† nouveau en stock.
+Bonne nouvelle ! {{Product}} est \u00E0 nouveau en stock.
 
-Commandez rapidement sur surf-center.com avant qu'il ne soit √©puis√© √† nouveau.
+Commandez rapidement sur surf-center.com avant qu'il ne soit \u00E9puis\u00E9 \u00E0 nouveau.
 
 Cordialement,
-L'√©quipe Surfcenter
+L'\u00E9quipe Surfcenter
 surf-center.com`
       },
     ];
 
-    // ‚îÄ‚îÄ‚îÄ LocalStorage templates ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+    // --- LocalStorage templates -----------------------------------------------
     function loadTemplates() {
       const raw = localStorage.getItem('oos_templates_v2');
       if (raw) { try { return JSON.parse(raw); } catch(e) {} }
@@ -391,7 +400,7 @@ surf-center.com`
     }
     function saveTemplates(tpls) { localStorage.setItem('oos_templates_v2', JSON.stringify(tpls)); }
 
-    // ‚îÄ‚îÄ‚îÄ CSV ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+    // --- CSV ------------------------------------------------------------------
     function parseCSVLine(line) {
       const result = []; let cur = ''; let inQ = false;
       for (let i = 0; i < line.length; i++) {
@@ -447,9 +456,9 @@ surf-center.com`
       const r = new FileReader(); r.onload = ev => processCSV(ev.target.result); r.readAsText(f);
     }
 
-    // ‚îÄ‚îÄ‚îÄ Render leads ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+    // --- Render leads ---------------------------------------------------------
     function fmtDate(str) {
-      if (!str) return '‚Äî';
+      if (!str) return '\u2014';
       const d = new Date(str);
       if (isNaN(d)) return str;
       return d.toLocaleDateString('nl-NL', { day:'2-digit', month:'short', year:'numeric' });
@@ -496,7 +505,7 @@ surf-center.com`
 
       const tbody = document.getElementById('leadsBody');
       filtered.forEach(lead => {
-        const name = [lead.firstName,lead.lastName].filter(Boolean).join(' ') || '‚Äî';
+        const name = [lead.firstName,lead.lastName].filter(Boolean).join(' ') || '\u2014';
         const lang = LANG_CODE[lead.store] || lead.store;
         const flag = LANG_FLAGS[lead.store] || '';
         const dateStr = fmtDate(lead.dateSubscribed);
@@ -511,7 +520,7 @@ surf-center.com`
           </td>
           <td class="px-4 py-3">
             <div class="font-semibold text-gray-900">${esc(name)}</div>
-            <div class="text-xs text-gray-400">${esc(lead.email||'‚Äî')}</div>
+            <div class="text-xs text-gray-400">${esc(lead.email||'\u2014')}</div>
           </td>
           <td class="px-4 py-3 max-w-[260px]">
             <div class="font-medium text-gray-800 leading-tight">${esc(lead.product)}</div>
@@ -526,7 +535,7 @@ surf-center.com`
                 <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
                 Mail
               </button>
-              <button title="Meer opties" class="px-2 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg text-xs font-bold compose-btn">‚ãØ</button>
+              <button title="Meer opties" class="px-2 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg text-xs font-bold compose-btn">\u2026</button>
             </div>
           </td>`;
         tr.querySelector('.apple-btn').addEventListener('click', e => { e.stopPropagation(); quickSend(lead, 'apple'); });
@@ -536,17 +545,17 @@ surf-center.com`
       });
     }
 
-    // ‚îÄ‚îÄ‚îÄ Compose ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+    // --- Compose --------------------------------------------------------------
     function openCompose(lead) {
       currentLead = lead;
-      const name = [lead.firstName,lead.lastName].filter(Boolean).join(' ') || lead.email || '‚Äî';
+      const name = [lead.firstName,lead.lastName].filter(Boolean).join(' ') || lead.email || '\u2014';
       const flag = LANG_FLAGS[lead.store]||'';
       const lang = LANG_CODE[lead.store]||lead.store;
 
-      document.getElementById('composeSubtitle').textContent = `${name} ‚Äì ${lead.product}`;
+      document.getElementById('composeSubtitle').textContent = `${name} \u2013 ${lead.product}`;
       document.getElementById('leadInfoStrip').innerHTML = `
         <div><span class="text-gray-400 text-xs font-bold block">Naam</span><span class="font-semibold text-gray-800">${esc(name)}</span></div>
-        <div><span class="text-gray-400 text-xs font-bold block">Email</span><span class="font-semibold text-gray-800">${esc(lead.email||'‚Äî')}</span></div>
+        <div><span class="text-gray-400 text-xs font-bold block">Email</span><span class="font-semibold text-gray-800">${esc(lead.email||'\u2014')}</span></div>
         <div><span class="text-gray-400 text-xs font-bold block">Product</span><span class="font-medium text-gray-700 text-xs leading-tight">${esc(lead.product)}</span></div>
         <div><span class="text-gray-400 text-xs font-bold block">Taal / Datum</span><span class="font-semibold text-gray-800">${flag} ${esc(lang)}</span><span class="text-xs text-gray-400 ml-2">${esc(fmtDate(lead.dateSubscribed))}</span></div>`;
 
@@ -650,7 +659,7 @@ surf-center.com`
       }
     }
 
-    // ‚îÄ‚îÄ‚îÄ Template manager ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+    // --- Template manager -----------------------------------------------------
     function openTemplateManager() {
       renderPlaceholderChips(); renderTemplateList(); newTemplate();
       document.getElementById('templateModal').classList.remove('hidden');
@@ -698,7 +707,7 @@ surf-center.com`
       const obj = { name, lang, subject, body };
       if (editingTplIndex!==null && editingTplIndex<templates.length) templates[editingTplIndex]=obj;
       else { templates.push(obj); editingTplIndex=templates.length-1; }
-      saveTemplates(templates); renderTemplateList(); alert('Opgeslagen ‚úì');
+      saveTemplates(templates); renderTemplateList(); alert('Opgeslagen \u2713');
     }
 
     function deleteTemplate() {
@@ -728,8 +737,9 @@ surf-center.com`
 
     function esc(v) { return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-    // init ‚Äî seed templates
+    // init \u2014 seed templates
     loadTemplates();
   </script>
 </body>
 </html>
+
